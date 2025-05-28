@@ -1,0 +1,9 @@
+[submodule "fprime"]
+	path = fprime
+	url = https://github.com/nasa/fprime.git
+[submodule "fprime-arduino"]
+	path = fprime-arduino
+	url = https://github.com/fprime-community/fprime-arduino.git
+[submodule "fprime-freertos"]
+	path = fprime-freertos
+	url = https://github.com/laboratory10/fprime-freertos.git
