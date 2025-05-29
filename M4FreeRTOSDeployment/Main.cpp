@@ -11,7 +11,7 @@
 #include <task.h>
 
 // Used for logging
-#include <Arduino/Os/Console.hpp>
+#include <fprime-featherm4-freertos/Os/Console.hpp>
 
 void RateLoop(void *params) {
     while (1) {
