@@ -13,7 +13,7 @@ set(SOURCE_FILES
 )
 set(MOD_DEPS
   Fw/Logger
-  Arduino/Drv/StreamDriver
+  fprime-featherm4-freertos/Drv/StreamDriver
 )
 
 register_fprime_module()

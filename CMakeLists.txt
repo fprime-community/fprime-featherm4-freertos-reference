@@ -8,8 +8,8 @@ project(fprime-featherm4-freertos-reference C CXX)
 
 ### Libraries
 # Set the path to the Arduino libraries directory
-set(ARDUINO_LIB_PATH "/home/<username>/Arduino/libraries")
-set(ARDUINO_SAMD_LIB_PATH "/home/<username>/.arduino15/packages/adafruit/hardware/samd/1.7.16/libraries")
+set(ARDUINO_LIB_PATH "/home/laboratory10/Arduino/libraries")
+set(ARDUINO_SAMD_LIB_PATH "/home/laboratory10/.arduino15/packages/adafruit/hardware/samd/1.7.16/libraries")
 
 # Include directories for Arduino libraries
 include_directories(
