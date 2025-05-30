@@ -1,12 +1,12 @@
 // ======================================================================
-// \title  M4FreeRTOSDeploymentTopology.cpp
+// \title  ReferenceDeploymentTopology.cpp
 // \brief cpp file containing the topology instantiation code
 //
 // ======================================================================
 // Provides access to autocoded functions
-#include <M4FreeRTOSDeployment/Top/M4FreeRTOSDeploymentTopologyAc.hpp>
+#include <ReferenceDeployment/Top/ReferenceDeploymentTopologyAc.hpp>
 // Note: Uncomment when using Svc:TlmPacketizer
-// #include <M4FreeRTOSDeployment/Top/M4FreeRTOSDeploymentPacketsAc.hpp>
+// #include <ReferenceDeployment/Top/ReferenceDeploymentPacketsAc.hpp>
 #include <config/FppConstantsAc.hpp>
 
 // Necessary project-specified types
@@ -14,7 +14,7 @@
 #include <Svc/FramingProtocol/FprimeProtocol.hpp>
 
 // Allows easy reference to objects in FPP/autocoder required namespaces
-using namespace M4FreeRTOSDeployment;
+using namespace ReferenceDeployment;
 
 // The reference topology uses a malloc-based allocator for components that need to allocate memory during the
 // initialization phase.
@@ -65,8 +65,8 @@ void configureTopology() {
     deframer.setup(deframing);
 }
 
-// Public functions for use in main program are namespaced with deployment name M4FreeRTOSDeployment
-namespace M4FreeRTOSDeployment {
+// Public functions for use in main program are namespaced with deployment name ReferenceDeployment
+namespace ReferenceDeployment {
 void setupTopology(const TopologyState& state) {
     // Autocoded initialization. Function provided by autocoder.
     initComponents(state);
@@ -93,4 +93,4 @@ void teardownTopology(const TopologyState& state) {
     stopTasks(state);
     freeThreads(state);
 }
-};  // namespace M4FreeRTOSDeployment
+};  // namespace ReferenceDeployment

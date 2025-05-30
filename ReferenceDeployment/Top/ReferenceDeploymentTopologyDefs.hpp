@@ -1,22 +1,22 @@
 // ======================================================================
-// \title  M4FreeRTOSDeploymentTopologyDefs.hpp
+// \title  ReferenceDeploymentTopologyDefs.hpp
 // \brief required header file containing the required definitions for the topology autocoder
 //
 // ======================================================================
-#ifndef M4FREERTOSDEPLOYMENT_M4FREERTOSDEPLOYMENTTOPOLOGYDEFS_HPP
-#define M4FREERTOSDEPLOYMENT_M4FREERTOSDEPLOYMENTTOPOLOGYDEFS_HPP
+#ifndef REFERENCEDEPLOYMENT_REFERENCEDEPLOYMENTTOPOLOGYDEFS_HPP
+#define REFERENCEDEPLOYMENT_REFERENCEDEPLOYMENTTOPOLOGYDEFS_HPP
 
 #include "Fw/Types/MallocAllocator.hpp"
-#include "M4FreeRTOSDeployment/Top/FppConstantsAc.hpp"
+#include "ReferenceDeployment/Top/FppConstantsAc.hpp"
 #include "Svc/FramingProtocol/FprimeProtocol.hpp"
 
 // Definitions are placed within a namespace named after the deployment
-namespace M4FreeRTOSDeployment {
+namespace ReferenceDeployment {
 
 /**
  * \brief required type definition to carry state
  *
- * The topology autocoder requires an object that carries state with the name `M4FreeRTOSDeployment::TopologyState`. Only the type
+ * The topology autocoder requires an object that carries state with the name `ReferenceDeployment::TopologyState`. Only the type
  * definition is required by the autocoder and the contents of this object are otherwise opaque to the autocoder. The
  * contents are entirely up to the definition of the project. This reference application specifies hostname and port
  * fields, which are derived by command line inputs.
@@ -59,5 +59,5 @@ namespace rateGroup1 {
 enum { WARN = 3, FATAL = 5 };
 }
 }  // namespace PingEntries
-}  // namespace M4FreeRTOSDeployment
+}  // namespace ReferenceDeployment
 #endif

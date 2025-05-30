@@ -1,7 +1,7 @@
 #####
-# 'M4FreeRTOSDeployment' Deployment:
+# 'ReferenceDeployment' Deployment:
 #
-# This registers the 'M4FreeRTOSDeployment' deployment to the build system. 
+# This registers the 'ReferenceDeployment' deployment to the build system. 
 # Custom components that have not been added at the project-level should be added to 
 # the list below.
 #

@@ -1,4 +1,4 @@
-module M4FreeRTOSDeployment {
+module ReferenceDeployment {
 
   # ----------------------------------------------------------------------
   # Symbolic constants for port numbers
@@ -8,7 +8,7 @@ module M4FreeRTOSDeployment {
       rateGroup1
     }
 
-  topology M4FreeRTOSDeployment {
+  topology ReferenceDeployment {
 
     # ----------------------------------------------------------------------
     # Instances used in the topology
@@ -81,7 +81,7 @@ module M4FreeRTOSDeployment {
       
     }
 
-    connections M4FreeRTOSDeployment {
+    connections ReferenceDeployment {
       # Add here connections to user-defined components
     }
 

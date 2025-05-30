@@ -1,4 +1,4 @@
-module M4FreeRTOSDeployment {
+module ReferenceDeployment {
 
   # ----------------------------------------------------------------------
   # Defaults

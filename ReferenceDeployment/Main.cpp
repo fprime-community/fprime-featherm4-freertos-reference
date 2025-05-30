@@ -4,8 +4,8 @@
 //
 // ======================================================================
 // Used to access topology functions
-#include <M4FreeRTOSDeployment/Top/M4FreeRTOSDeploymentTopologyAc.hpp>
-#include <M4FreeRTOSDeployment/Top/M4FreeRTOSDeploymentTopology.hpp>
+#include <ReferenceDeployment/Top/ReferenceDeploymentTopologyAc.hpp>
+#include <ReferenceDeployment/Top/ReferenceDeploymentTopology.hpp>
 
 #include <FreeRTOS.h>
 #include <task.h>
@@ -34,12 +34,12 @@ void setup() {
     static_cast<Os::Arduino::StreamConsoleHandle*>(Os::Console::getSingleton().getHandle())->setStreamHandler(Serial);
 
     // Object for communicating state to the reference topology
-    M4FreeRTOSDeployment::TopologyState inputs;
+    ReferenceDeployment::TopologyState inputs;
     inputs.uartNumber = 0;
     inputs.uartBaud = 115200;
 
     // Setup topology
-    M4FreeRTOSDeployment::setupTopology(inputs);
+    ReferenceDeployment::setupTopology(inputs);
     xTaskCreate(RateLoop, "RateLoop", 1600, NULL, 1, NULL);
 
     Fw::Logger::log("Program Started\n");

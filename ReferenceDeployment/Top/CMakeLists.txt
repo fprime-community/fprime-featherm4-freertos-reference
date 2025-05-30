@@ -7,9 +7,9 @@
 
 set(SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/instances.fpp"
-  "${CMAKE_CURRENT_LIST_DIR}/M4FreeRTOSDeploymentPackets.xml"
+  "${CMAKE_CURRENT_LIST_DIR}/ReferenceDeploymentPackets.xml"
   "${CMAKE_CURRENT_LIST_DIR}/topology.fpp"
-  "${CMAKE_CURRENT_LIST_DIR}/M4FreeRTOSDeploymentTopology.cpp"
+  "${CMAKE_CURRENT_LIST_DIR}/ReferenceDeploymentTopology.cpp"
 )
 set(MOD_DEPS
   Fw/Logger
