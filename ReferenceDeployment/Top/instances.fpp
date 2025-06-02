@@ -40,11 +40,11 @@ module ReferenceDeployment {
 
   instance bufferManager: Svc.BufferManager base id 0x2000
 
-  instance commDriver: Arduino.StreamDriver base id 0x4000
+  instance commDriver: FeatherM4.StreamDriver base id 0x4000
 
   instance framer: Svc.Framer base id 0x4100
 
-  instance timeHandler: Arduino.ArduinoTime base id 0x4200
+  instance timeHandler: FeatherM4.FeatherM4Time base id 0x4200
 
   instance rateGroupDriver: Svc.RateGroupDriver base id 0x4300
 
@@ -52,6 +52,6 @@ module ReferenceDeployment {
 
   instance deframer: Svc.Deframer base id 0x4500
 
-  instance rateDriver: Arduino.HardwareRateDriver base id 0x4600
+  instance rateDriver: FeatherM4.HardwareRateDriver base id 0x4600
 
 }

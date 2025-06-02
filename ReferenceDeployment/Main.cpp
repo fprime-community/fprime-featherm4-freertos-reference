@@ -31,7 +31,7 @@ void setup() {
 
     // Setup Serial and Logging
     Serial.begin(115200);
-    static_cast<Os::Arduino::StreamConsoleHandle*>(Os::Console::getSingleton().getHandle())->setStreamHandler(Serial);
+    static_cast<Os::FeatherM4::StreamConsoleHandle*>(Os::Console::getSingleton().getHandle())->setStreamHandler(Serial);
 
     // Object for communicating state to the reference topology
     ReferenceDeployment::TopologyState inputs;
