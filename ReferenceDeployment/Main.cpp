@@ -1,7 +1,9 @@
 // ======================================================================
 // \title  Main.cpp
-// \brief main program for the F' application. Intended for Arduino-based systems
-//
+// \brief main program for the F' application. Uses the Arduino-style
+//        execution with a setup and loop function. The loop function
+//        is not used since we allow the FreeRTOS scheduler to take over
+//        before it is invoked.
 // ======================================================================
 // Used to access topology functions
 #include <ReferenceDeployment/Top/ReferenceDeploymentTopologyAc.hpp>
