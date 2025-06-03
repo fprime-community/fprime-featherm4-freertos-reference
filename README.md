@@ -132,14 +132,6 @@ It is finally time to clone the reference repository, make some FreeRTOS config 
     ```sh
     cd fprime-featherm4-freertos-reference
     ```
-- Ensure the fprime requirements are installed
-    ```sh
-    pip install -r "fprime/requirements.txt" -U --force-reinstall
-    ```
-- Setup submodules
-    ```sh
-    git submodule update --init --recursive
-    ```
 - Make FreeRTOS arduino library configuration changes
     - Open the FreeRTOSConfig.h file wherever your arduino libraries are stored. For me the filepath is /home/username/Arduino/libraries/FreeRTOS_SAMD51/src/FreeRTOSConfig.h
     - Change config_TOTAL_HEAP_SIZE to 112 KB
@@ -207,7 +199,7 @@ It is finally time to clone the reference repository, make some FreeRTOS config 
         ```
     - Run the GDS with the following Linux command:
         ```sh
-        fprime-gds -n --dictionary ./build-artifacts/FreeRTOS_featherM4/ReferenceDeployment/dict/ReferenceDeploymentTopologyAppDictionary.xml --communication-selection uart --uart-device /dev/ttyACM0 --uart-baud 115200
+        fprime-gds -n --dictionary ./build-artifacts/FeatherM4_FreeRTOS/ReferenceDeployment/dict/ReferenceDeploymentTopologyAppDictionary.xml --communication-selection uart --uart-device /dev/ttyACM0 --uart-baud 115200
         ```
     - Navigate to <a href="http://127.0.0.1:5000">http://127.0.0.1:5000</a> in a browser or wherever the terminal output shows the GDS UI is available
     - Send a few commands and make sure event and channelized telemetry are updating
