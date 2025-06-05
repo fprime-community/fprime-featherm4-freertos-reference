@@ -6,7 +6,7 @@ Welcome to fprime-featherm4-freertos-reference, a repository that contains a com
 
 - fprime-featherm4-freertos-reference (this repository) - an example of a basic build using a specific platform
     - <a href="https://github.com/laboratory10/fprime-featherm4-freertos">fprime-featherm4-freertos</a> - a platform repository which is defined by a combination of board and OS
-        - <a href="https://github.com/laboratory10/fprime-featherm4">fprime-featherm4</a> - board-specific platform/toolchain/driver files
+        - <a href="https://github.com/fprime-community/fprime-arduino">fprime-arduino</a> - board-specific platform/toolchain/driver files
         - <a href="https://github.com/laboratory10/fprime-freertos">fprime-freertos</a> - a port connecting the F' OSAL to FreeRTOS
  
 This reference deployment was developed using a Windows machine and the ATSAMD51J19 (specifically, the <a href="https://www.adafruit.com/product/3857">Adafruit Feather M4</a>). The rest of this README will provide detailed setup instructions that should take you from nothing to executing commands with FSW running on your target. Before proceeding, make sure the correct version of fprime (as well as fprime-tools and fprime-bootstrap) and all of the system requirements are met by following the instructions specified on the <a href="https://fprime.jpl.nasa.gov/latest/docs/getting-started/installing-fprime/">Installing F'</a> page or by using the following steps as a guide:
@@ -151,7 +151,7 @@ It is finally time to clone the reference repository, make some FreeRTOS config 
     fprime-util build
     ```
 - After the build command completes, you should see the size breakdown of the memory segments of the final target image
-- Confirm the binary was created in ./build-artifacts/FreeRTOS_featherM4/ReferenceDeployment/bin/ReferenceDeployment.elf.bin 
+- Confirm the binary was created in ./build-artifacts/FeatherM4_FreeRTOS/ReferenceDeployment/bin/ReferenceDeployment.elf.bin 
 
 ## Section 3: Flash the Image to the Target and Interact Using F' GDS
 

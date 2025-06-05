@@ -4,23 +4,7 @@
 ####
 
 cmake_minimum_required(VERSION 3.13)
-project(fprime-featherm4-freertos-reference C CXX)
-
-### Libraries
-# Set the path to the Arduino libraries directory
-set(ARDUINO_LIB_PATH "/home/laboratory10/Arduino/libraries")
-set(ARDUINO_SAMD_LIB_PATH "/home/laboratory10/.arduino15/packages/adafruit/hardware/samd/1.7.16/libraries")
-
-# Include directories for Arduino libraries
-include_directories(
-    ${ARDUINO_LIB_PATH}/Time
-    ${ARDUINO_LIB_PATH}/FreeRTOS_SAMD51
-    ${ARDUINO_SAMD_LIB_PATH}/Wire
-    ${ARDUINO_SAMD_LIB_PATH}/SPI
-    ${ARDUINO_SAMD_LIB_PATH}/Adafruit_ZeroDMA
-)
-target_use_arduino_libraries("FreeRTOS_SAMD51")
-        
+project(fprime-featherm4-freertos-reference C CXX)        
 
 ###
 # F' Core Setup

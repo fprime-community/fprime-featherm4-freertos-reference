@@ -13,7 +13,7 @@
 #include <task.h>
 
 // Used for logging
-#include <fprime-featherm4-freertos/Os/Console.hpp>
+#include <Arduino/Os/Console.hpp>
 
 void RateLoop(void *params) {
     while (1) {
@@ -33,7 +33,7 @@ void setup() {
 
     // Setup Serial and Logging
     Serial.begin(115200);
-    static_cast<Os::FeatherM4::StreamConsoleHandle*>(Os::Console::getSingleton().getHandle())->setStreamHandler(Serial);
+    static_cast<Os::Arduino::StreamConsoleHandle*>(Os::Console::getSingleton().getHandle())->setStreamHandler(Serial);
 
     // Object for communicating state to the reference topology
     ReferenceDeployment::TopologyState inputs;
