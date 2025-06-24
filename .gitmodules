@@ -3,4 +3,4 @@
 	url = https://github.com/nasa/fprime.git
 [submodule "fprime-featherm4-freertos"]
 	path = fprime-featherm4-freertos
-	url = https://github.com/laboratory10/fprime-featherm4-freertos.git
+	url = https://github.com/fprime-community/fprime-featherm4-freertos.git
