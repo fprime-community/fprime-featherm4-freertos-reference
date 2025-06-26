@@ -76,11 +76,11 @@ Before continuing, F' version typically tends to matter. If you want to use a sp
 
 - Install fprime-tools
     ```sh
-    pip install fprime-tools==3.5.1
+    pip install fprime-tools==3.6.1
     ```
 - Install fprime-bootstrap
     ```sh
-    pip install fprime-bootstrap==1.2.1
+    pip install fprime-bootstrap==1.3.1
     ```
 
 Now, we need to make sure relevant Arduino libraries and tools are present. I chose to leverage the Arduino tools available to make it easier to interact with the board and compile/link the final binary.
