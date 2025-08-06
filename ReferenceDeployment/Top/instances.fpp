@@ -5,8 +5,8 @@ module ReferenceDeployment {
   # ----------------------------------------------------------------------
 
   module Default {
-    constant QUEUE_SIZE = 3
-    constant STACK_SIZE = 8 * 1024
+    constant QUEUE_SIZE = 2
+    constant STACK_SIZE = 5 * 1024
   }
 
   # ----------------------------------------------------------------------
@@ -18,12 +18,17 @@ module ReferenceDeployment {
     stack size Default.STACK_SIZE \
     priority 101
 
-  instance eventLogger: Svc.ActiveLogger base id 0x0200 \
+  instance comQueue: Svc.ComQueue base id 0x0200 \
+    queue size Default.QUEUE_SIZE \
+    stack size Default.STACK_SIZE \
+    priority 100 \
+
+  instance eventLogger: Svc.ActiveLogger base id 0x0300 \
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \
     priority 98
 
-  instance tlmSend: Svc.TlmChan base id 0x0300 \
+  instance tlmSend: Svc.TlmChan base id 0x0400 \
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \
     priority 97
@@ -42,7 +47,7 @@ module ReferenceDeployment {
 
   instance commDriver: Arduino.StreamDriver base id 0x4000
 
-  instance framer: Svc.Framer base id 0x4100
+  instance framer: Svc.FprimeFramer base id 0x4100
 
   instance timeHandler: Arduino.ArduinoTime base id 0x4200
 
@@ -50,8 +55,14 @@ module ReferenceDeployment {
 
   instance textLogger: Svc.PassiveTextLogger base id 0x4400
 
-  instance deframer: Svc.Deframer base id 0x4500
+  instance deframer: Svc.FprimeDeframer base id 0x4500
 
   instance rateDriver: Arduino.HardwareRateDriver base id 0x4600
+
+  instance comStub: Svc.ComStub base id 0x4700
+
+  instance frameAccumulator: Svc.FrameAccumulator base id 0x4800
+
+  instance fprimeRouter: Svc.FprimeRouter base id 0x4900
 
 }
