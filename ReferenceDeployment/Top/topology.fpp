@@ -20,7 +20,7 @@ module ReferenceDeployment {
     instance comStub
     instance commDriver
     instance deframer
-    instance eventLogger
+    instance eventManager
     instance framer
     instance fprimeRouter
     instance frameAccumulator
@@ -37,7 +37,7 @@ module ReferenceDeployment {
 
     command connections instance cmdDisp
 
-    event connections instance eventLogger
+    event connections instance eventManager
 
     telemetry connections instance tlmSend
 
@@ -61,7 +61,7 @@ module ReferenceDeployment {
 
     connections Downlink {
       # Inputs to ComQueue (events, telemetry, file)
-      eventLogger.PktSend -> comQueue.comPacketQueueIn[0]
+      eventManager.PktSend -> comQueue.comPacketQueueIn[0]
       tlmSend.PktSend     -> comQueue.comPacketQueueIn[1]
 
       # ComQueue <-> Framer
@@ -80,7 +80,7 @@ module ReferenceDeployment {
 
       # ComStub <-> CommDriver
       comStub.drvSendOut      -> commDriver.$send
-      commDriver.sendReturnOut -> comStub.drvSendReturnIn
+      #commDriver.sendReturnOut -> comStub.drvSendReturnIn
       commDriver.ready         -> comStub.drvConnected
     }
     

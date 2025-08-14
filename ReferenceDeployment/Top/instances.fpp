@@ -5,7 +5,7 @@ module ReferenceDeployment {
   # ----------------------------------------------------------------------
 
   module Default {
-    constant QUEUE_SIZE = 2
+    constant QUEUE_SIZE = 3
     constant STACK_SIZE = 5 * 1024
   }
 
@@ -15,7 +15,7 @@ module ReferenceDeployment {
 
   instance cmdDisp: Svc.CommandDispatcher base id 0x0100 \
     queue size Default.QUEUE_SIZE\
-    stack size Default.STACK_SIZE \
+    stack size (6 * 1024) \
     priority 101
 
   instance comQueue: Svc.ComQueue base id 0x0200 \
@@ -23,7 +23,7 @@ module ReferenceDeployment {
     stack size Default.STACK_SIZE \
     priority 100 \
 
-  instance eventLogger: Svc.ActiveLogger base id 0x0300 \
+  instance eventManager: Svc.EventManager base id 0x0300 \
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \
     priority 98

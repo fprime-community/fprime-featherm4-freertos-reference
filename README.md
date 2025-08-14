@@ -76,11 +76,29 @@ Before continuing, F' version typically tends to matter. If you want to use a sp
 
 - Install fprime-tools
     ```sh
-    pip install fprime-tools==4.0.0a6
+    pip install fprime-tools==4.0.1
     ```
 - Install fprime-bootstrap
     ```sh
     pip install fprime-bootstrap==1.3.1
+    ```
+- For reference and in case of issues, this is the current output of my `fprime-util version-check` for this project:
+    ```sh
+    Operating System: Linux
+    CPU Architecture: x86_64
+    Platform: Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39
+    Python version: 3.12.3
+    CMake version: 3.26.0
+    Pip version: 24.0
+    Pip packages:
+        fprime-tools==4.0.1
+        fprime-gds==4.0.1
+        fprime-fpp==3.0.0
+    Project submodules:
+        https://github.com/nasa/fprime.git @ v4.0.0
+        https://github.com/fprime-community/fprime-featherm4-freertos.git @ 5c0c0f1
+        https://github.com/fprime-community/fprime-arduino.git @ v0.1.0-56-ga2285fb
+        https://github.com/fprime-community/fprime-freertos.git @ 7e64be9
     ```
 
 Now, we need to make sure relevant Arduino libraries and tools are present. I chose to leverage the Arduino tools available to make it easier to interact with the board and compile/link the final binary.
@@ -128,15 +146,15 @@ It is finally time to clone the reference repository, make some FreeRTOS config 
     ```sh
     fprime-bootstrap clone https://github.com/fprime-community/fprime-featherm4-freertos-reference.git
     ```
-- Change current directory to the newly cloned project
+- Change current directory to the newly cloned project and then into the ReferenceDeployment directory
     ```sh
-    cd fprime-featherm4-freertos-reference
+    cd fprime-featherm4-freertos-reference/ReferenceDeployment/
     ```
 - Make FreeRTOS arduino library configuration changes
     - Open the FreeRTOSConfig.h file wherever your arduino libraries are stored. For me the filepath is /home/username/Arduino/libraries/FreeRTOS_SAMD51/src/FreeRTOSConfig.h
-    - Change config_TOTAL_HEAP_SIZE to 112 KB
+    - Change config_TOTAL_HEAP_SIZE to 95 KB
         ```.h
-        #define configTOTAL_HEAP_SIZE			( ( size_t ) ( 112 * 1024 ) )
+        #define configTOTAL_HEAP_SIZE			( ( size_t ) ( 95 * 1024 ) )
         ```
     - Also add the following to somewhere in the file:
         ```.h
@@ -151,7 +169,7 @@ It is finally time to clone the reference repository, make some FreeRTOS config 
     fprime-util build
     ```
 - After the build command completes, you should see the size breakdown of the memory segments of the final target image
-- Confirm the binary was created in ./build-artifacts/FeatherM4_FreeRTOS/ReferenceDeployment/bin/ReferenceDeployment.elf.bin 
+- Confirm the binary was created in ../build-artifacts/FeatherM4_FreeRTOS/ReferenceDeployment/bin/ReferenceDeployment.elf.bin 
 
 ## Section 3: Flash the Image to the Target and Interact Using F' GDS
 
@@ -199,7 +217,7 @@ It is finally time to clone the reference repository, make some FreeRTOS config 
         ```
     - Run the GDS with the following Linux command:
         ```sh
-        fprime-gds -n --dictionary ./build-artifacts/FeatherM4_FreeRTOS/ReferenceDeployment/dict/ReferenceDeploymentTopologyDictionary.json --communication-selection uart --uart-device /dev/ttyACM0 --uart-baud 115200
+        fprime-gds -n --dictionary ../build-artifacts/FeatherM4_FreeRTOS/ReferenceDeployment/dict/ReferenceDeploymentTopologyDictionary.json --communication-selection uart --uart-device /dev/ttyACM0 --uart-baud 115200 --framing-selection fprime
         ```
     - Navigate to <a href="http://127.0.0.1:5000">http://127.0.0.1:5000</a> in a browser or wherever the terminal output shows the GDS UI is available
     - Send a few commands and make sure event and channelized telemetry are updating
