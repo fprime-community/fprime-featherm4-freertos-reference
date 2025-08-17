@@ -17,6 +17,6 @@
     "Svc.FprimeDeframer": "ComFprime.deframer",
     "Svc.FprimeFramer": "ComFprime.fprimeFramer",
     "Svc.FprimeRouter": "ComFprime.fprimeRouter",
-    "Svc.ComStub": "ComFprime.comStub",
+    "Svc.ComStub": "ComFprime.comStub"
 
 }
