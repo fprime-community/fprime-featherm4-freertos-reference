@@ -1,0 +1,22 @@
+{
+
+    "Svc.CommandDispatcher": "ReferenceDeployment.cmdDisp",
+    "Svc.EventManager": "ReferenceDeployment.eventManager",
+    "Svc.TlmChan": "ReferenceDeployment.tlmSend",
+
+    "Svc.PassiveRateGroup": "ReferenceDeployment.rateGroup1",
+    "Arduino.StreamDriver": "ReferenceDeployment.comDriver",
+    "Arduino.ArduinoTime": "ReferenceDeployment.timeHandler",
+    "Svc.RateGroupDriver": "ReferenceDeployment.rateGroupDriver",
+    "Svc.PassiveTextLogger": "ReferenceDeployment.textLogger",
+    "Arduino.HardwareRateDriver": "ReferenceDeployment.rateDriver",
+
+    "Svc.ComQueue": "ComFprime.comQueue",
+    "Svc.BufferManager": "ComFprime.commsBufferManager",
+    "Svc.FrameAccumulator": "ComFprime.frameAccumulator",
+    "Svc.FprimeDeframer": "ComFprime.deframer",
+    "Svc.FprimeFramer": "ComFprime.fprimeFramer",
+    "Svc.FprimeRouter": "ComFprime.fprimeRouter",
+    "Svc.ComStub": "ComFprime.comStub"
+
+}

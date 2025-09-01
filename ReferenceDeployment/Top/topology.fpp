@@ -11,15 +11,18 @@ module ReferenceDeployment {
   topology ReferenceDeployment {
 
     # ----------------------------------------------------------------------
+    # Subtopology imports
+    # ----------------------------------------------------------------------
+
+    import ComFprime.Subtopology
+
+    # ----------------------------------------------------------------------
     # Instances used in the topology
     # ----------------------------------------------------------------------
 
-    instance bufferManager
     instance cmdDisp
-    instance commDriver
-    instance deframer
-    instance eventLogger
-    instance framer
+    instance comDriver
+    instance eventManager
     instance rateDriver
     instance rateGroup1
     instance rateGroupDriver
@@ -33,7 +36,7 @@ module ReferenceDeployment {
 
     command connections instance cmdDisp
 
-    event connections instance eventLogger
+    event connections instance eventManager
 
     telemetry connections instance tlmSend
 
@@ -51,34 +54,30 @@ module ReferenceDeployment {
 
       # Rate group 1
       rateGroupDriver.CycleOut[Ports_RateGroups.rateGroup1] -> rateGroup1.CycleIn
-      rateGroup1.RateGroupMemberOut[0] -> commDriver.schedIn
-      rateGroup1.RateGroupMemberOut[1] -> tlmSend.Run
+      rateGroup1.RateGroupMemberOut[0] -> tlmSend.Run
+      rateGroup1.RateGroupMemberOut[1] -> comDriver.schedIn
     }
 
-    connections Downlink {
+    connections Communications {
+      # Inputs to ComQueue (events, telemetry, file)
+      eventManager.PktSend -> ComFprime.comQueue.comPacketQueueIn[ComFprime.Ports_ComPacketQueue.EVENTS]
+      tlmSend.PktSend     -> ComFprime.comQueue.comPacketQueueIn[ComFprime.Ports_ComPacketQueue.TELEMETRY]
 
-      tlmSend.PktSend -> framer.comIn
-      eventLogger.PktSend -> framer.comIn
-
-      framer.framedAllocate -> bufferManager.bufferGetCallee
-      framer.framedOut -> commDriver.$send
-
-      commDriver.deallocate -> bufferManager.bufferSendIn
-
-    }
-    
-    connections Uplink {
-
-      commDriver.allocate -> bufferManager.bufferGetCallee
-      commDriver.$recv -> deframer.framedIn
-      deframer.framedDeallocate -> bufferManager.bufferSendIn
-
-      deframer.comOut -> cmdDisp.seqCmdBuff
-      cmdDisp.seqCmdStatus -> deframer.cmdResponseIn
-
-      deframer.bufferAllocate -> bufferManager.bufferGetCallee
-      deframer.bufferDeallocate -> bufferManager.bufferSendIn
+      # ComDriver buffer allocations
+      comDriver.allocate      -> ComFprime.commsBufferManager.bufferGetCallee
+      comDriver.deallocate    -> ComFprime.commsBufferManager.bufferSendIn
       
+      # ComDriver <-> ComStub (Uplink)
+      comDriver.$recv                     -> ComFprime.comStub.drvReceiveIn
+      ComFprime.comStub.drvReceiveReturnOut -> comDriver.recvReturnIn
+      
+      # ComStub <-> ComDriver (Downlink)
+      ComFprime.comStub.drvSendOut      -> comDriver.$send
+      comDriver.ready         -> ComFprime.comStub.drvConnected
+
+      # Router <-> CmdDispatcher
+      ComFprime.fprimeRouter.commandOut  -> cmdDisp.seqCmdBuff
+      cmdDisp.seqCmdStatus     -> ComFprime.fprimeRouter.cmdResponseIn
     }
 
     connections ReferenceDeployment {

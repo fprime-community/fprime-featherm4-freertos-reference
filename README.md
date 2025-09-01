@@ -72,11 +72,13 @@ This reference deployment was developed using a Windows machine and the ATSAMD51
 
 ## Section 1: Finalize Environment Setup and Package Installation
 
-Before continuing, F' version typically tends to matter. If you want to use a specific version of F' that is out of date try looking through the repository history for versions that should be compatible with earlier versions.
+Before continuing, F' version typically tends to matter. If you want to use a specific version of F' that is out of date try looking through the repository history for instructions that should be compatible with earlier versions of fprime-featherm4-freertos-reference.
+
+NOTE: These steps can typically be skipped if you are already certain you have the appropriate fprime, Arduino, and FreeRTOS packages installed.
 
 - Install fprime-tools
     ```sh
-    pip install fprime-tools==3.6.1
+    pip install fprime-tools==4.0.1
     ```
 - Install fprime-bootstrap
     ```sh
@@ -119,6 +121,16 @@ Now, we need to make sure relevant Arduino libraries and tools are present. I ch
     ```sh
     arduino-cli lib install FreeRTOS_SAMD51
     ```
+- Make FreeRTOS arduino library configuration changes
+    - Open the FreeRTOSConfig.h file wherever your arduino libraries are stored. For me the filepath is /home/username/Arduino/libraries/FreeRTOS_SAMD51/src/FreeRTOSConfig.h
+    - Change config_TOTAL_HEAP_SIZE to 95 KB
+        ```.h
+        #define configTOTAL_HEAP_SIZE			( ( size_t ) ( 95 * 1024 ) )
+        ```
+    - Also add the following to somewhere in the file:
+        ```.h
+        #define INCLUDE_xSemaphoreGetMutexHolder 1
+        ```
 
 ## Section 2: Clone and Build the Reference Deployment
 
@@ -132,26 +144,55 @@ It is finally time to clone the reference repository, make some FreeRTOS config 
     ```sh
     cd fprime-featherm4-freertos-reference
     ```
-- Make FreeRTOS arduino library configuration changes
-    - Open the FreeRTOSConfig.h file wherever your arduino libraries are stored. For me the filepath is /home/username/Arduino/libraries/FreeRTOS_SAMD51/src/FreeRTOSConfig.h
-    - Change config_TOTAL_HEAP_SIZE to 112 KB
-        ```.h
-        #define configTOTAL_HEAP_SIZE			( ( size_t ) ( 112 * 1024 ) )
-        ```
-    - Also add the following to somewhere in the file:
-        ```.h
-        #define INCLUDE_xSemaphoreGetMutexHolder 1
-        ```
+- Take a look at the tagged versions of fprime-featherm4-freertos-reference on GitHub. The tagged versions of this repository should correspond with compatible fprime versions. If for some reason you don't want to use the latest version of fprime or if the latest commit on the main branch isn't one that is tagged as being compatible, you may want to change what branch or commit you are on. Use these commands as a reference for fetching, viewing, and checking out tagged commits. If the version of fprime you want to use doesn't have a tag, it may be that I havent updated the reference project to be compatible with the new version yet.
+    ```sh
+    git fetch --tags
+    ```
+    ```sh
+    git tag
+    ```
+    ```sh
+    git checkout fprime-v4.0.0
+    ```
+    ```sh
+    git submodule update --init --recursive
+    ```
+- Change current directory to the ReferenceDeployment directory
+    ```sh
+    cd ReferenceDeployment
+    ```
+- For reference and in case of issues, this is the current output of my `fprime-util version-check` for this project:
+    ```sh
+    Operating System: Linux
+    CPU Architecture: x86_64
+    Platform: Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39
+    Python version: 3.12.3
+    CMake version: 3.26.0
+    Pip version: 24.0
+    Pip packages:
+        fprime-tools==4.0.1
+        fprime-gds==4.0.1
+        fprime-fpp==3.0.0
+    Project submodules:
+        https://github.com/nasa/fprime.git @ v4.0.0
+        https://github.com/fprime-community/fprime-featherm4-freertos.git @ 5c0c0f1
+        https://github.com/fprime-community/fprime-arduino.git @ v0.1.0-56-ga2285fb
+        https://github.com/fprime-community/fprime-freertos.git @ 7e64be9
+    ```
 - Generate F' build files
     ```sh
     fprime-util generate
+    ```
+- If for some reason you didn't have the proper fprime package versions installed, this is where you would get an error and notice. If the build files generate move on to the next step. If not, you may get promped to force-reinstall the current fprime requirements.
+    ```sh
+    pip install -r "../lib/fprime/requirements.txt" -U --force-reinstall
     ```
 - Build ReferenceDeployment
     ```sh
     fprime-util build
     ```
 - After the build command completes, you should see the size breakdown of the memory segments of the final target image
-- Confirm the binary was created in ./build-artifacts/FeatherM4_FreeRTOS/ReferenceDeployment/bin/ReferenceDeployment.elf.bin 
+- Confirm the binary was created in ../build-artifacts/FeatherM4_FreeRTOS/ReferenceDeployment/bin/ReferenceDeployment.elf.bin 
 
 ## Section 3: Flash the Image to the Target and Interact Using F' GDS
 
@@ -199,8 +240,13 @@ It is finally time to clone the reference repository, make some FreeRTOS config 
         ```
     - Run the GDS with the following Linux command:
         ```sh
-        fprime-gds -n --dictionary ./build-artifacts/FeatherM4_FreeRTOS/ReferenceDeployment/dict/ReferenceDeploymentTopologyAppDictionary.xml --communication-selection uart --uart-device /dev/ttyACM0 --uart-baud 115200
+        fprime-gds -n --dictionary ../build-artifacts/FeatherM4_FreeRTOS/ReferenceDeployment/dict/ReferenceDeploymentTopologyDictionary.json --communication-selection uart --uart-device /dev/ttyACM0 --uart-baud 115200 --framing-selection fprime
         ```
     - Navigate to <a href="http://127.0.0.1:5000">http://127.0.0.1:5000</a> in a browser or wherever the terminal output shows the GDS UI is available
     - Send a few commands and make sure event and channelized telemetry are updating
     - Congratulations, you have the F' and FreeRTOS running on a physical board!
+
+- If you want to run the integration tests for the reference deployment, issue this wsl command while the fprime-gds is running and connected via serial to the featherM4
+    ```sh
+    pytest ReferenceDeployment/test/int/test.py --dictionary build-artifacts/FeatherM4_FreeRTOS/ReferenceDeployment/dict/ReferenceDeploymentTopologyDictionary.json --deployment-config ReferenceDeployment/Top/int_config.json
+    ```
