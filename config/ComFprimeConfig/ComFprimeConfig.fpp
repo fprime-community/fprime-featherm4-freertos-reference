@@ -3,7 +3,7 @@ module ComFprimeConfig {
     constant BASE_ID = 0x03000000
     
     module QueueSizes {
-        constant comQueue    = 3
+        constant comQueue    = 5
     }
     
     module StackSizes {

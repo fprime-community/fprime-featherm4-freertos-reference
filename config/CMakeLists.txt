@@ -1,4 +1,5 @@
 add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/ComFprimeConfig")
+add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/ComCcsdsConfig")
 
 register_fprime_config(
     fprime-featherm4-freertos-reference-config
