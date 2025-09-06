@@ -6,6 +6,7 @@ module ReferenceDeployment {
 
     enum Ports_RateGroups {
       rateGroup1
+      rateGroup2
     }
 
   topology ReferenceDeployment {
@@ -25,10 +26,12 @@ module ReferenceDeployment {
     instance eventManager
     instance rateDriver
     instance rateGroup1
+    instance rateGroup2
     instance rateGroupDriver
     instance textLogger
     instance timeHandler
     instance tlmSend
+    instance osResources
 
     # ----------------------------------------------------------------------
     # Pattern graph specifiers
@@ -56,6 +59,10 @@ module ReferenceDeployment {
       rateGroupDriver.CycleOut[Ports_RateGroups.rateGroup1] -> rateGroup1.CycleIn
       rateGroup1.RateGroupMemberOut[0] -> tlmSend.Run
       rateGroup1.RateGroupMemberOut[1] -> comDriver.schedIn
+
+      # Rate group 2
+      rateGroupDriver.CycleOut[Ports_RateGroups.rateGroup2] -> rateGroup2.CycleIn
+      rateGroup2.RateGroupMemberOut[0] -> osResources.Run
     }
 
     connections Communications {

@@ -3,11 +3,11 @@ module ComFprimeConfig {
     constant BASE_ID = 0x03000000
     
     module QueueSizes {
-        constant comQueue    = 3
+        constant comQueue    = 10
     }
     
     module StackSizes {
-        constant comQueue   = 5 * 1024
+        constant comQueue   = 1 * 1024
     }
 
     module Priorities {
@@ -30,7 +30,7 @@ module ComFprimeConfig {
     # Buffer management constants
     module BuffMgr {
         constant frameAccumulatorSize  = 2048     
-        constant commsBuffSize         = 140      
+        constant commsBuffSize         = 550      
         constant commsFileBuffSize     = 140      
         constant commsBuffCount        = 3      
         constant commsFileBuffCount    = 3        
