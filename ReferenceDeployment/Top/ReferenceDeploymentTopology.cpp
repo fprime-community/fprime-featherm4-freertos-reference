@@ -12,8 +12,8 @@
 // Allows easy reference to objects in FPP/autocoder required namespaces
 using namespace ReferenceDeployment;
 
-// The reference topology divides the incoming clock signal (1Hz) into sub-signals: 1/100Hz, 1/200Hz, and 1/1000Hz
-Svc::RateGroupDriver::DividerSet rateGroupDivisors{{{100, 0}, {1000, 0}, {1000, 0}}};
+// The reference topology subdivides the incoming clock signal (1000Hz) into sub-signals: 10Hz, 5Hz, and 1Hz
+Svc::RateGroupDriver::DividerSet rateGroupDivisors{{{100, 0}, {200, 0}, {1000, 0}}};
 
 // Rate groups may supply a context token to each of the attached children whose purpose is set by the project. The
 // reference topology sets each token to zero as these contexts are unused in this project.

@@ -42,7 +42,7 @@ void setup() {
 
     // Setup topology
     ReferenceDeployment::setupTopology(inputs);
-    xTaskCreate(RateLoop, "RateLoop", 1700, NULL, 1, NULL);
+    xTaskCreate(RateLoop, "RateLoop", 1200, NULL, 1, NULL);
 
     Fw::Logger::log("Program Started\n");
     vTaskStartScheduler();

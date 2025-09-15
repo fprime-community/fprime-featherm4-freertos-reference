@@ -15,7 +15,7 @@ module ReferenceDeployment {
     # Subtopology imports
     # ----------------------------------------------------------------------
 
-    import ComFprime.Subtopology
+    import ComCcsds.Subtopology
     import Bmp280.Subtopology
     import MpuImu.Subtopology
 
@@ -76,24 +76,24 @@ module ReferenceDeployment {
 
     connections Communications {
       # Inputs to ComQueue (events, telemetry, file)
-      eventManager.PktSend -> ComFprime.comQueue.comPacketQueueIn[ComFprime.Ports_ComPacketQueue.EVENTS]
-      tlmSend.PktSend     -> ComFprime.comQueue.comPacketQueueIn[ComFprime.Ports_ComPacketQueue.TELEMETRY]
+      eventManager.PktSend -> ComCcsds.comQueue.comPacketQueueIn[ComCcsds.Ports_ComPacketQueue.EVENTS]
+      tlmSend.PktSend     -> ComCcsds.comQueue.comPacketQueueIn[ComCcsds.Ports_ComPacketQueue.TELEMETRY]
 
       # ComDriver buffer allocations
-      comDriver.allocate      -> ComFprime.commsBufferManager.bufferGetCallee
-      comDriver.deallocate    -> ComFprime.commsBufferManager.bufferSendIn
+      comDriver.allocate      -> ComCcsds.commsBufferManager.bufferGetCallee
+      comDriver.deallocate    -> ComCcsds.commsBufferManager.bufferSendIn
       
       # ComDriver <-> ComStub (Uplink)
-      comDriver.$recv                     -> ComFprime.comStub.drvReceiveIn
-      ComFprime.comStub.drvReceiveReturnOut -> comDriver.recvReturnIn
+      comDriver.$recv                     -> ComCcsds.comStub.drvReceiveIn
+      ComCcsds.comStub.drvReceiveReturnOut -> comDriver.recvReturnIn
       
       # ComStub <-> ComDriver (Downlink)
-      ComFprime.comStub.drvSendOut      -> comDriver.$send
-      comDriver.ready         -> ComFprime.comStub.drvConnected
+      ComCcsds.comStub.drvSendOut      -> comDriver.$send
+      comDriver.ready         -> ComCcsds.comStub.drvConnected
 
       # Router <-> CmdDispatcher
-      ComFprime.fprimeRouter.commandOut  -> cmdDisp.seqCmdBuff
-      cmdDisp.seqCmdStatus     -> ComFprime.fprimeRouter.cmdResponseIn
+      ComCcsds.fprimeRouter.commandOut  -> cmdDisp.seqCmdBuff
+      cmdDisp.seqCmdStatus     -> ComCcsds.fprimeRouter.cmdResponseIn
     }
 
     connections ReferenceDeployment {

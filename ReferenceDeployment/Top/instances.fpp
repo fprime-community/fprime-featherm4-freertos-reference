@@ -15,17 +15,17 @@ module ReferenceDeployment {
 
   instance cmdDisp: Svc.CommandDispatcher base id 0x0100 \
     queue size 10\
-    stack size (2 * 1024) \
+    stack size 1600 \
     priority 101
 
   instance eventManager: Svc.EventManager base id 0x0300 \
     queue size 10 \
-    stack size (2 * 1024) \
+    stack size 1300 \
     priority 102
 
   instance tlmSend: Svc.TlmChan base id 0x0400 \
     queue size 10 \
-    stack size (2 * 1024) \
+    stack size 900 \
     priority 97
 
   # ----------------------------------------------------------------------
