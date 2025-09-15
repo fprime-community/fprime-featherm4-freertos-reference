@@ -6,7 +6,7 @@ module ReferenceDeployment {
 
   module Default {
     constant QUEUE_SIZE = 10
-    constant STACK_SIZE = 1 * 1024
+    constant STACK_SIZE = 2 * 1024
   }
 
   # ----------------------------------------------------------------------
@@ -15,17 +15,17 @@ module ReferenceDeployment {
 
   instance cmdDisp: Svc.CommandDispatcher base id 0x0100 \
     queue size 10\
-    stack size (1 * 1024) \
+    stack size (2 * 1024) \
     priority 101
 
   instance eventManager: Svc.EventManager base id 0x0300 \
     queue size 10 \
-    stack size (1 * 1024) \
+    stack size (2 * 1024) \
     priority 102
 
   instance tlmSend: Svc.TlmChan base id 0x0400 \
     queue size 10 \
-    stack size (0.5 * 1024) \
+    stack size (2 * 1024) \
     priority 97
 
   # ----------------------------------------------------------------------
@@ -41,6 +41,8 @@ module ReferenceDeployment {
 
   instance comDriver: Arduino.StreamDriver base id 0x4000
 
+  instance fatalHandler: FeatherM4_FreeRTOS.FeatherM4FatalHandler base id 0x4300
+
   instance timeHandler: Arduino.ArduinoTime base id 0x4400
 
   instance rateGroupDriver: Svc.RateGroupDriver base id 0x4500
@@ -49,6 +51,6 @@ module ReferenceDeployment {
 
   instance rateDriver: Arduino.HardwareRateDriver base id 0x4900
 
-  instance osResources: FreeRTOS.OsResources base id 0x5000
+  instance osResources: FeatherM4_FreeRTOS.OsResources base id 0x5000
 
 }

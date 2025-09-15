@@ -16,6 +16,8 @@ module ReferenceDeployment {
     # ----------------------------------------------------------------------
 
     import ComFprime.Subtopology
+    import Bmp280.Subtopology
+    import MpuImu.Subtopology
 
     # ----------------------------------------------------------------------
     # Instances used in the topology
@@ -24,6 +26,7 @@ module ReferenceDeployment {
     instance cmdDisp
     instance comDriver
     instance eventManager
+    instance fatalHandler
     instance rateDriver
     instance rateGroup1
     instance rateGroup2
@@ -63,6 +66,12 @@ module ReferenceDeployment {
       # Rate group 2
       rateGroupDriver.CycleOut[Ports_RateGroups.rateGroup2] -> rateGroup2.CycleIn
       rateGroup2.RateGroupMemberOut[0] -> osResources.Run
+      rateGroup2.RateGroupMemberOut[1] -> Bmp280.bmpManager.run
+      rateGroup2.RateGroupMemberOut[2] -> MpuImu.imuManager.run
+    }
+
+    connections FaultProtection {
+      eventManager.FatalAnnounce -> fatalHandler.FatalReceive
     }
 
     connections Communications {

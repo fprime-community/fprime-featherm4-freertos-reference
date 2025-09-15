@@ -7,7 +7,7 @@ module ComFprimeConfig {
     }
     
     module StackSizes {
-        constant comQueue   = 1 * 1024
+        constant comQueue   = 2 * 1024
     }
 
     module Priorities {

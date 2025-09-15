@@ -4,3 +4,6 @@
 [submodule "fprime-featherm4-freertos"]
 	path = lib/fprime-featherm4-freertos
 	url = https://github.com/fprime-community/fprime-featherm4-freertos.git
+[submodule "lib/fprime-sensors"]
+	path = lib/fprime-sensors
+	url = https://github.com/fprime-community/fprime-sensors.git
