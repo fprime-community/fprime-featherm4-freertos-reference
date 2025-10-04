@@ -7,3 +7,6 @@
 [submodule "lib/fprime-sensors"]
 	path = lib/fprime-sensors
 	url = https://github.com/fprime-community/fprime-sensors.git
+[submodule "lib/FreeRTOS-SAMD51"]
+	path = lib/FreeRTOS-SAMD51
+	url = https://github.com/BriscoeTech/Arduino-FreeRTOS-SAMD51.git
