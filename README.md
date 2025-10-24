@@ -65,6 +65,10 @@ This reference deployment was developed using a Windows machine and the ATSAMD51
         ```sh
         python3 -m venv fprime-venv
         ```
+    - (May not be needed depending on environment setup) Make sure git will properly handle line endings
+        ```sh
+        git config --global core.autocrlf input
+        ```
     - Activate virtual environment. Note: anything done past this point needs the fprime-venv activated.
         ```sh
         . fprime-venv/bin/activate
