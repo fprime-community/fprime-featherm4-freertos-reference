@@ -165,9 +165,9 @@ It is finally time to clone the reference repository, make some FreeRTOS config 
         fprime-fpp==3.0.0
     Project submodules:
         https://github.com/nasa/fprime.git @ v4.0.0
-        https://github.com/fprime-community/fprime-featherm4-freertos.git @ 5c0c0f1
-        https://github.com/fprime-community/fprime-arduino.git @ v0.1.0-56-ga2285fb
-        https://github.com/fprime-community/fprime-freertos.git @ 7e64be9
+        https://github.com/fprime-community/fprime-featherm4-freertos.git @ d595988
+        https://github.com/fprime-community/fprime-freertos.git @ ff8cd6f
+        https://github.com/fprime-community/fprime-sensors.git @ 4044472
     ```
 - Ensure the required package versions for use with this specific version of fprime are installed.
     ```sh
@@ -230,7 +230,7 @@ It is finally time to clone the reference repository, make some FreeRTOS config 
         ```
     - Run the GDS with the following Linux command:
         ```sh
-        fprime-gds -n --dictionary ../build-artifacts/FeatherM4_FreeRTOS/ReferenceDeployment/dict/ReferenceDeploymentTopologfprime-gds -n --dictionary ../build-artifacts/FeatherM4_FreeRTOS/ReferenceDeployment/dict/ReferenceDeploymentTopologyDictionary.json --communication-selection uart --uart-device /dev/ttyACM0 --uart-baud 115200 --output-unframed-data -
+        fprime-gds -n --dictionary ../build-artifacts/FeatherM4_FreeRTOS/ReferenceDeployment/dict/ReferenceDeploymentTopologyDictionary.json --communication-selection uart --uart-device /dev/ttyACM0 --uart-baud 115200 --output-unframed-data -
         ```
     - Navigate to <a href="http://127.0.0.1:5000">http://127.0.0.1:5000</a> in a browser or wherever the terminal output shows the GDS UI is available
     - Send a few commands and make sure event and channelized telemetry are updating
