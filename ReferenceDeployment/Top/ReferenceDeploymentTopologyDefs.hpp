@@ -9,9 +9,9 @@
 #include "Fw/Types/MallocAllocator.hpp"
 #include "ReferenceDeployment/Top/FppConstantsAc.hpp"
 
-#include "Svc/Subtopologies/ComFprime/SubtopologyTopologyDefs.hpp"
-#include "Svc/Subtopologies/ComFprime/Ports_ComPacketQueueEnumAc.hpp"
-#include "Svc/Subtopologies/ComFprime/Ports_ComBufferQueueEnumAc.hpp"
+#include "Svc/Subtopologies/ComCcsds/SubtopologyTopologyDefs.hpp"
+#include "Svc/Subtopologies/ComCcsds/Ports_ComPacketQueueEnumAc.hpp"
+#include "Svc/Subtopologies/ComCcsds/Ports_ComBufferQueueEnumAc.hpp"
 
 /**
  * \brief required ping constants

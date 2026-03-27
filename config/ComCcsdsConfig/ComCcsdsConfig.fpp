@@ -1,13 +1,13 @@
-module ComFprimeConfig {
-    #Base ID for the ComFprime Subtopology, all components are offsets from this base ID
-    constant BASE_ID = 0x03000000
-    
+module ComCcsdsConfig {
+    #Base ID for the ComCcsds Subtopology, all components are offsets from this base ID
+    constant BASE_ID = 0x02000000
+
     module QueueSizes {
         constant comQueue    = 10
     }
-    
+
     module StackSizes {
-        constant comQueue   = 2 * 1024
+        constant comQueue   = 1300
     }
 
     module Priorities {
@@ -16,15 +16,15 @@ module ComFprimeConfig {
 
     # Queue configuration constants
     module QueueDepths {
-        constant events      = 10            
+        constant events      = 10             
         constant tlm         = 25            
-        constant file        = 1           
+        constant file        = 1            
     }
 
     module QueuePriorities {
-        constant events      = 0              
-        constant tlm         = 2              
-        constant file        = 1             
+        constant events      = 0                 
+        constant tlm         = 2                 
+        constant file        = 1                   
     }
 
     # Buffer management constants
@@ -32,8 +32,8 @@ module ComFprimeConfig {
         constant frameAccumulatorSize  = 2048     
         constant commsBuffSize         = 550      
         constant commsFileBuffSize     = 140      
-        constant commsBuffCount        = 3      
-        constant commsFileBuffCount    = 3        
+        constant commsBuffCount        = 3        
+        constant commsFileBuffCount    = 3       
         constant commsBuffMgrId        = 200      
     }
 }

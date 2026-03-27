@@ -65,6 +65,10 @@ This reference deployment was developed using a Windows machine and the ATSAMD51
         ```sh
         python3 -m venv fprime-venv
         ```
+    - (May not be needed depending on environment setup) Make sure git will properly handle line endings
+        ```sh
+        git config --global core.autocrlf input
+        ```
     - Activate virtual environment. Note: anything done past this point needs the fprime-venv activated.
         ```sh
         . fprime-venv/bin/activate
@@ -117,20 +121,6 @@ Now, we need to make sure relevant Arduino libraries and tools are present. I ch
     ```sh
     arduino-cli lib install Time
     ```
-    The version of FreeRTOS_SAMD51 used to develop this procedure was version 1.6.1 but newer versions should work.
-    ```sh
-    arduino-cli lib install FreeRTOS_SAMD51
-    ```
-- Make FreeRTOS arduino library configuration changes
-    - Open the FreeRTOSConfig.h file wherever your arduino libraries are stored. For me the filepath is /home/username/Arduino/libraries/FreeRTOS_SAMD51/src/FreeRTOSConfig.h
-    - Change config_TOTAL_HEAP_SIZE to 95 KB
-        ```.h
-        #define configTOTAL_HEAP_SIZE			( ( size_t ) ( 95 * 1024 ) )
-        ```
-    - Also add the following to somewhere in the file:
-        ```.h
-        #define INCLUDE_xSemaphoreGetMutexHolder 1
-        ```
 
 ## Section 2: Clone and Build the Reference Deployment
 
@@ -175,17 +165,17 @@ It is finally time to clone the reference repository, make some FreeRTOS config 
         fprime-fpp==3.0.0
     Project submodules:
         https://github.com/nasa/fprime.git @ v4.0.0
-        https://github.com/fprime-community/fprime-featherm4-freertos.git @ 5c0c0f1
-        https://github.com/fprime-community/fprime-arduino.git @ v0.1.0-56-ga2285fb
-        https://github.com/fprime-community/fprime-freertos.git @ 7e64be9
+        https://github.com/fprime-community/fprime-featherm4-freertos.git @ d595988
+        https://github.com/fprime-community/fprime-freertos.git @ ff8cd6f
+        https://github.com/fprime-community/fprime-sensors.git @ 4044472
+    ```
+- Ensure the required package versions for use with this specific version of fprime are installed.
+    ```sh
+    pip install -r "../lib/fprime/requirements.txt" -U --force-reinstall
     ```
 - Generate F' build files
     ```sh
     fprime-util generate
-    ```
-- If for some reason you didn't have the proper fprime package versions installed, this is where you would get an error and notice. If the build files generate move on to the next step. If not, you may get promped to force-reinstall the current fprime requirements.
-    ```sh
-    pip install -r "../lib/fprime/requirements.txt" -U --force-reinstall
     ```
 - Build ReferenceDeployment
     ```sh
@@ -209,7 +199,7 @@ It is finally time to clone the reference repository, make some FreeRTOS config 
         ```sh
         usbipd list
         ```
-    - Flash the image using the following PowerShell command. Be sure the COM port and filepaths for `bossac.exe` and the `ReferenceDeployment.elf.bin` binary match reality.
+    - Flash the image using the following PowerShell command. Be sure the COM port and filepaths for `bossac.exe` and the `ReferenceDeployment.elf.bin` binary match reality and you've provided your actual username.
         ```sh
         C:\Users\<username>\AppData\Local\Arduino15\packages\adafruit\tools\bossac\1.8.0-48-gb176eee/bossac.exe -i -d --port=COM27 -U -i --offset=0x4000 -w -v C:\Users\<username>\Documents\ReferenceDeployment.elf.bin -R
         ```
@@ -240,7 +230,7 @@ It is finally time to clone the reference repository, make some FreeRTOS config 
         ```
     - Run the GDS with the following Linux command:
         ```sh
-        fprime-gds -n --dictionary ../build-artifacts/FeatherM4_FreeRTOS/ReferenceDeployment/dict/ReferenceDeploymentTopologyDictionary.json --communication-selection uart --uart-device /dev/ttyACM0 --uart-baud 115200 --framing-selection fprime
+        fprime-gds -n --dictionary ../build-artifacts/FeatherM4_FreeRTOS/ReferenceDeployment/dict/ReferenceDeploymentTopologyDictionary.json --communication-selection uart --uart-device /dev/ttyACM0 --uart-baud 115200 --output-unframed-data -
         ```
     - Navigate to <a href="http://127.0.0.1:5000">http://127.0.0.1:5000</a> in a browser or wherever the terminal output shows the GDS UI is available
     - Send a few commands and make sure event and channelized telemetry are updating
