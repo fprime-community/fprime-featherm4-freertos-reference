@@ -3,14 +3,17 @@ module ComCcsdsConfig {
     constant BASE_ID = 0x02000000
 
     module QueueSizes {
+        constant aggregator   = 5
         constant comQueue    = 10
     }
 
     module StackSizes {
+        constant aggregator   = 1300
         constant comQueue   = 1300
     }
 
     module Priorities {
+        constant aggregator = 104
         constant comQueue   = 103
     }
 
