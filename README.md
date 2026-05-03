@@ -154,21 +154,21 @@ It is finally time to clone the reference repository, make some FreeRTOS config 
 - For reference and in case of issues, this is the current output of my `fprime-util version-check` for this project:
     ```sh
     Operating System: Linux
-CPU Architecture: x86_64
-Platform: Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39
-Python version: 3.12.3
-CMake version: 3.26.0
-Pip version: 26.1
-Pip packages:
-    fprime-tools==4.2.1
-    fprime-gds==4.2.1
-    fprime-fpp==3.2.0
-Project submodules:
-    https://github.com/nasa/fprime.git @ v4.2.2
-    https://github.com/fprime-community/fprime-featherm4-freertos.git @ fprime-v4.1.1 (update)
-    https://github.com/fprime-community/fprime-arduino.git @ 6185034 (update)
-    https://github.com/fprime-community/fprime-freertos.git @ fprime-v4.1.1 (update)
-    https://github.com/fprime-community/fprime-sensors.git @ v4.1.0-1-ga7a72d3 (update)
+    CPU Architecture: x86_64
+    Platform: Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39
+    Python version: 3.12.3
+    CMake version: 3.26.0
+    Pip version: 26.1
+    Pip packages:
+        fprime-tools==4.2.1
+        fprime-gds==4.2.1
+        fprime-fpp==3.2.0
+    Project submodules:
+        https://github.com/nasa/fprime.git @ v4.2.2
+        https://github.com/fprime-community/fprime-featherm4-freertos.git @ fprime-v4.1.1-1-g7ab8147
+        https://github.com/fprime-community/fprime-arduino.git @ 6185034
+        https://github.com/fprime-community/fprime-freertos.git @ fprime-v4.1.1-1-g1ceed56
+        https://github.com/fprime-community/fprime-sensors.git @ v4.1.0-1-ga7a72d3
     ```
 - Ensure the required package versions for use with this specific version of fprime are installed.
     ```sh
