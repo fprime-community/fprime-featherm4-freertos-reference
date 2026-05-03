@@ -17,8 +17,8 @@ Svc::RateGroupDriver::DividerSet rateGroupDivisors{{{100, 0}, {200, 0}, {1000, 0
 
 // Rate groups may supply a context token to each of the attached children whose purpose is set by the project. The
 // reference topology sets each token to zero as these contexts are unused in this project.
-U32 rateGroup1Context[FppConstant_PassiveRateGroupOutputPorts::PassiveRateGroupOutputPorts] = {};
-U32 rateGroup2Context[FppConstant_PassiveRateGroupOutputPorts::PassiveRateGroupOutputPorts] = {};
+U32 rateGroup1Context[PassiveRateGroupOutputPorts] = {};
+U32 rateGroup2Context[PassiveRateGroupOutputPorts] = {};
 
 /**
  * \brief configure/setup components in project-specific way
