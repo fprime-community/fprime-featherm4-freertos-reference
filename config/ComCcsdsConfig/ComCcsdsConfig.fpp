@@ -30,6 +30,11 @@ module ComCcsdsConfig {
         constant file        = 1                   
     }
 
+    module CpuAffinities {
+        constant aggregator = 0
+        constant comQueue   = 0
+    }
+
     # Buffer management constants
     module BuffMgr {
         constant frameAccumulatorSize  = 2048     

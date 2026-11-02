@@ -17,8 +17,8 @@ Svc::RateGroupDriver::DividerSet rateGroupDivisors{{{100, 0}, {200, 0}, {1000, 0
 
 // Rate groups may supply a context token to each of the attached children whose purpose is set by the project. The
 // reference topology sets each token to zero as these contexts are unused in this project.
-U32 rateGroup1Context[PassiveRateGroupOutputPorts] = {};
-U32 rateGroup2Context[PassiveRateGroupOutputPorts] = {};
+Svc::PassiveRateGroup::ContextArray rateGroup1Context(0);
+Svc::PassiveRateGroup::ContextArray rateGroup2Context(0);
 
 /**
  * \brief configure/setup components in project-specific way
@@ -32,8 +32,8 @@ void configureTopology() {
     rateGroupDriver.configure(rateGroupDivisors);
 
     // Rate groups require context arrays.
-    rateGroup1.configure(rateGroup1Context, FW_NUM_ARRAY_ELEMENTS(rateGroup1Context));
-    rateGroup2.configure(rateGroup2Context, FW_NUM_ARRAY_ELEMENTS(rateGroup2Context));
+    rateGroup1.configure(rateGroup1Context);
+    rateGroup2.configure(rateGroup2Context);
 }
 
 // Public functions for use in main program are namespaced with deployment name ReferenceDeployment
