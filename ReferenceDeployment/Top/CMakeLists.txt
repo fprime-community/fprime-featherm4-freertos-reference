@@ -5,15 +5,14 @@
 # MOD_DEPS: (optional) module dependencies
 ####
 
-set(SOURCE_FILES
-  "${CMAKE_CURRENT_LIST_DIR}/instances.fpp"
-  "${CMAKE_CURRENT_LIST_DIR}/ReferenceDeploymentPackets.xml"
-  "${CMAKE_CURRENT_LIST_DIR}/topology.fpp"
-  "${CMAKE_CURRENT_LIST_DIR}/ReferenceDeploymentTopology.cpp"
+register_fprime_module(
+  AUTOCODER_INPUTS
+    "${CMAKE_CURRENT_LIST_DIR}/instances.fpp"
+    "${CMAKE_CURRENT_LIST_DIR}/system.fpp"
+    "${CMAKE_CURRENT_LIST_DIR}/topology.fpp"
+  SOURCES
+    "${CMAKE_CURRENT_LIST_DIR}/ReferenceDeploymentTopology.cpp"
+  DEPENDS
+    Fw_Logger
+    Arduino_Drv_StreamDriver
 )
-set(MOD_DEPS
-  Fw/Logger
-  Arduino/Drv/StreamDriver
-)
-
-register_fprime_module()
