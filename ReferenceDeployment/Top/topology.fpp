@@ -9,7 +9,7 @@ module ReferenceDeployment {
       rateGroup2
     }
 
-  topology ReferenceDeployment {
+  deployment topology ReferenceDeployment {
 
     # ----------------------------------------------------------------------
     # Subtopology imports
