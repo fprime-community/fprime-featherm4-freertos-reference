@@ -82,7 +82,7 @@ NOTE: These steps can typically be skipped if you are already certain you have t
 
 - Install fprime-tools
     ```sh
-    pip install fprime-tools==4.3.0
+    pip install fprime-tools==4.4.0
     ```
 - Install fprime-bootstrap
     ```sh
@@ -158,15 +158,15 @@ It is finally time to clone the reference repository, make some FreeRTOS config 
     Platform: Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39
     Python version: 3.12.3
     CMake version: 3.26.0
-    Pip version: 26.2.1
+    Pip version: 26.3
     Pip packages:
-        fprime-tools==4.3.0
-        fprime-gds==4.3.0
-        fprime-fpp==3.3.0
+        fprime-tools==4.4.0
+        fprime-gds==4.4.0
+        fprime-fpp==3.4.0
     Project submodules:
-        https://github.com/nasa/fprime.git @ v4.3.0
-        https://github.com/fprime-community/fprime-featherm4-freertos.git @ fprime-v4.2.2-3-gc7d1a63
-        https://github.com/fprime-community/fprime-freertos.git @ fprime-v4.2.2-1-g52abc33
+        https://github.com/nasa/fprime.git @ v4.4.2
+        https://github.com/fprime-community/fprime-featherm4-freertos.git @ fprime-v4.4.2
+        https://github.com/fprime-community/fprime-freertos.git @ fprime-v4.4.2
         https://github.com/fprime-community/fprime-sensors.git @ v4.4.0-3-ge5d83d1
     ```
 - Ensure the required package versions for use with this specific version of fprime are installed.
